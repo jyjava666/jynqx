@@ -1,0 +1,18 @@
+server:
+  port: 8901
+
+#eureka
+
+spring:
+  application:
+    name:discovery-eureka
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    # 代表自己为注册中心
+    fetchRegistry: false
+    serviceUrl:
+      defalutZone: http://${eureka.instance.hostname}:${server.port}/eureka/
