@@ -26,5 +26,12 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
 
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
+#mybatis:
+ # mapper-locations: classpath:mapper/*.xml
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  configuration:
+    #设置枚举匹配数据库字段
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+

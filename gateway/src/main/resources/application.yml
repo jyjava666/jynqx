@@ -1,0 +1,31 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8901/eureka/
+
+server:
+  port: 8080
+
+spring:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+  profiles:
+    active: local
+  application:
+    name: gateway
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+  cloud:
+    gateway:
+      routes:
+        - id: application-order
+          uri: lb://application-order
+          predicates:
+            - Path=/order/**
+  main:
+    # 该错误源于spring-boot-starter-web和spring-boot-starter-webflux之间的冲突，gateway是基于webflux响应式编程
+    web-application-type: reactive
